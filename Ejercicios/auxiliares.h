@@ -9,11 +9,15 @@
 
 #include "definiciones.h"
 
-//cambiarBanderita
+/******++++**************************** EJERCICIO plantarBanderita ***********+++***********************/
 bool perteneceABanderitas(pos p, banderitas& b);
 void intercambiarValoresVector(pos& x, pos& y);
 void removerBanderita(pos p, banderitas& b);
 
-//minasAdyacentes
+
+/******++++**************************** EJERCICIO minasAdyacentes ***********+++***********************/
 bool esAdyacenteValida(pos p, tablero& t);
 bool coordenadaValida(int c, int n);
+
+/******++++**************************** EJERCICIO perdio ***********+++***********************/
+bool seJugoUnaMina(tablero& t, jugadas& j);
