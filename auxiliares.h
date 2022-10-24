@@ -9,6 +9,11 @@
 
 #include "definiciones.h"
 
+//cambiarBanderita
 bool perteneceABanderitas(pos p, banderitas& b);
 void intercambiarValoresVector(pos& x, pos& y);
 void removerBanderita(pos p, banderitas& b);
+
+//minasAdyacentes
+bool esAdyacenteValida(pos p, tablero& t);
+bool coordenadaValida(int c, int n);
