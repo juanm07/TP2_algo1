@@ -11,9 +11,25 @@
 #include "auxiliares.h"
 using namespace std;
 
-//cambiarBanderita
-bool perteneceABanderitas(pos p, banderitas& b){
+/******++++**************************** EJERCICIO minasAdyacentes ***********+++***********************/
+bool esAdyacenteValida(pos p, tablero& t){
+    int largo_tablero = t.size();
+    if(coordenadaValida(p.first,largo_tablero) && coordenadaValida(p.second,largo_tablero)){
+        return true;
+    }
+    return false;
+}
 
+bool coordenadaValida(int c, int n){
+    return (0<= c && c<n);
+}
+
+
+
+
+/******++++**************************** EJERCICIO plantarBanderita ***********+++***********************/
+
+bool perteneceABanderitas(pos p, banderitas& b){
     for(int i=0; i<b.size();i++){
         if(b[i]== p){
             return true;
@@ -31,23 +47,20 @@ void removerBanderita(pos p, banderitas& b){
     }
 }
 
-
-
 void intercambiarValoresVector(pos& x, pos& y){
     pos temp = x;
     x = y;
     y = temp;
 }
 
-//minasAdyacentes
-bool esAdyacenteValida(pos p, tablero& t){
-    int largo_tablero = t.size();
-    if(coordenadaValida(p.first,largo_tablero) && coordenadaValida(p.second,largo_tablero)){
-        return true;
+/******++++**************************** EJERCICIO perdio ***********+++***********************/
+
+bool seJugoUnaMina(tablero& t, jugadas& j){
+    for(int i = 0; i<j.size();i++){
+        pos posicionJugada = j[i].first;
+        if(t[posicionJugada.first][posicionJugada.second]){
+            return true;
+        }
     }
     return false;
-}
-
-bool coordenadaValida(int c, int n){
-    return (0<= c && c<n);
 }
