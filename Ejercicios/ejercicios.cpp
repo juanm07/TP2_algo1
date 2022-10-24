@@ -19,7 +19,6 @@ int minasAdyacentes(tablero& t, pos p) {
     for(int i = -1; i<2;i++){
         for(int j = -1;j<2;j++){
             pos posicion_actual = {(p.first)- i,(p.second)-j};
-            //bool casilla = t[posicion_actual.first][posicion_actual.second];
             if(esAdyacenteValida(posicion_actual,t)&& t[posicion_actual.first][posicion_actual.second] && (i != 0 || j!=0)){
                 res++;
             }
@@ -42,7 +41,12 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
 
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
 bool perdio(tablero& t, jugadas& j) {
-    // ...
+    if(seJugoUnaMina(t,j)){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
@@ -59,5 +63,4 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
     // ...
 }
-
 
