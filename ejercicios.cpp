@@ -15,7 +15,17 @@ using namespace std;
 /******++++**************************** EJERCICIO minasAdyacentes ***********+++***********************/
 
 int minasAdyacentes(tablero& t, pos p) {
-    // ...
+    int res = 0;
+    for(int i = -1; i<2;i++){
+        for(int j = -1;j<2;j++){
+            pos posicion_actual = {(p.first)- i,(p.second)-j};
+            //bool casilla = t[posicion_actual.first][posicion_actual.second];
+            if(esAdyacenteValida(posicion_actual,t)&& t[posicion_actual.first][posicion_actual.second] && (i != 0 || j!=0)){
+                res++;
+            }
+        }
+    }
+    return res;
 }
 
 /******++++**************************** EJERCICIO plantarBanderita ***********+++***********************/
