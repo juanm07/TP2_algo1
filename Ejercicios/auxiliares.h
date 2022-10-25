@@ -21,3 +21,8 @@ bool coordenadaValida(int c, int n);
 
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
 bool seJugoUnaMina(tablero& t, jugadas& j);
+
+/******++++**************************** EJERCICIO gano ***********+++***********************/
+bool juegoGanado(vector<pair<int,int>> p,jugadas& j);
+bool perteneceAJugadas(pos p, jugadas& j);
+vector<pair<int,int>> posicionesSinMinas (tablero& t);
