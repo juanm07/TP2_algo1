@@ -51,7 +51,7 @@ bool perdio(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
 bool gano(tablero& t, jugadas& j) {
-    // ...
+    return juegoGanado(posicionesSinMinas(t), j);
 }
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
