@@ -64,3 +64,34 @@ bool seJugoUnaMina(tablero& t, jugadas& j){
     }
     return false;
 }
+
+/******++++**************************** EJERCICIO gano ***********+++***********************/
+bool juegoGanado(vector<pos> p, jugadas& j){
+    for(int i = 0; i < p.size(); i++){
+        if(!perteneceAJugadas(p[i], j)){
+            return false;
+        }
+    }
+    return true;
+}
+
+bool perteneceAJugadas(pos p, jugadas& j){
+    for(int i = 0; i < j.size(); i++){
+        if(j[i].first == p){
+            return true;
+        }
+    }
+    return false;
+}
+
+vector<pos> posicionesSinMinas (tablero& t){
+    vector<pos> res = { };
+    for(int i = 0; i < t.size(); i++) {
+        for (int k = 0; k < t.size(); k++) {
+            if(!t[i][k]){
+                res.push_back(make_pair(i,k));
+            }
+        }
+    }
+    return res;
+}
