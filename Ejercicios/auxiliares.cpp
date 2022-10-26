@@ -67,12 +67,14 @@ bool seJugoUnaMina(tablero& t, jugadas& j){
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
 bool juegoGanado(vector<pos> p, jugadas& j){
-    for(int i = 0; i < p.size(); i++){
-        if(!perteneceAJugadas(p[i], j)){
-            return false;
+    if(p.size() == j.size()){
+        for(int i = 0; i < p.size(); i++){
+            if(perteneceAJugadas(p[i], j)){
+                return true;
+            }
         }
     }
-    return true;
+    return false;
 }
 
 bool perteneceAJugadas(pos p, jugadas& j){
