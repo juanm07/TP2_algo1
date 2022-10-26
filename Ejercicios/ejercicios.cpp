@@ -56,17 +56,9 @@ bool gano(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
-    if(existeCaminoValido(t,b,p,j)){
-        jugadas jugadasDeCamino = caminoLibre(t,b,p,j);
-        for(int i=0;i<jugadasDeCamino.size();i++){
-            j.push_back(jugadasDeCamino[i]);
-        }
-     }
-    else{
-        j.push_back(jugada(pos(p), minasAdyacentes(t,p)));
-    }
-
+    caminoLibre(t,b,p,j);
 }
+
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
