@@ -97,3 +97,39 @@ vector<pos> posicionesSinMinas (tablero& t){
     }
     return res;
 }
+
+/******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
+bool esAdyacente121(pos p, jugadas& j){
+    if( es121Horizontal(make_pair(p.first - 1, p.second), j) || es121Horizontal(make_pair(p.first + 1, p.second), j) ||
+        es121Vertical(make_pair(p.first, p.second - 1), j) || es121Vertical(make_pair(p.first, p.second + 1), j)){
+        return true;
+    }
+    return false;
+}
+
+bool es121Horizontal(pos p, jugadas& j){
+    if(perteneceJugada(make_pair(make_pair(p.first, p.second -1 ), 1), j) &&
+       perteneceJugada(make_pair(p, 2), j) &&
+       perteneceJugada(make_pair(make_pair(p.first, p.second + 1 ), 1), j)){
+        return true;
+    }
+    return false;
+}
+
+bool es121Vertical(pos p, jugadas& j){
+    if(perteneceJugada(make_pair(make_pair(p.first - 1, p.second), 1), j) &&
+       perteneceJugada(make_pair(p, 2), j) &&
+       perteneceJugada(make_pair(make_pair(p.first + 1, p.second), 1), j)){
+        return true;
+    }
+    return false;
+}
+
+bool perteneceJugada(jugada j0, jugadas& j){
+    for(int i=0; i < j.size(); i++){
+        if(j[i] == j0){
+            return true;
+        }
+    }
+    return false;
+}
