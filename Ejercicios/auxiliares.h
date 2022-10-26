@@ -26,3 +26,9 @@ bool seJugoUnaMina(tablero& t, jugadas& j);
 bool juegoGanado(vector<pair<int,int>> p,jugadas& j);
 bool perteneceAJugadas(pos p, jugadas& j);
 vector<pair<int,int>> posicionesSinMinas (tablero& t);
+
+/******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
+bool esAdyacente121(pos p, jugadas& j);
+bool es121Horizontal(pos p, jugadas& j);
+bool es121Vertical(pos p, jugadas& j);
+bool perteneceJugada(jugada j0, jugadas& j);
