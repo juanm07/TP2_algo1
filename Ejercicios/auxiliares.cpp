@@ -100,26 +100,26 @@ vector<pos> posicionesSinMinas (tablero& t){
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 bool esAdyacente121(pos p, jugadas& j){
-    if( es121Horizontal(make_pair(p.first - 1, p.second), j) || es121Horizontal(make_pair(p.first + 1, p.second), j) ||
-        es121Vertical(make_pair(p.first, p.second - 1), j) || es121Vertical(make_pair(p.first, p.second + 1), j)){
+    if( es121Horizontal(pos(p.first - 1, p.second), j) || es121Horizontal(pos(p.first + 1, p.second), j) ||
+        es121Vertical(pos(p.first, p.second - 1), j) || es121Vertical(pos(p.first, p.second + 1), j)){
         return true;
     }
     return false;
 }
 
 bool es121Horizontal(pos p, jugadas& j){
-    if(perteneceJugada(make_pair(make_pair(p.first, p.second -1 ), 1), j) &&
-       perteneceJugada(make_pair(p, 2), j) &&
-       perteneceJugada(make_pair(make_pair(p.first, p.second + 1 ), 1), j)){
+    if(perteneceJugada(jugada(pos(p.first, p.second -1 ), 1), j) &&
+       perteneceJugada(jugada(p, 2), j) &&
+       perteneceJugada(jugada(pos(p.first, p.second + 1 ), 1), j)){
         return true;
     }
     return false;
 }
 
 bool es121Vertical(pos p, jugadas& j){
-    if(perteneceJugada(make_pair(make_pair(p.first - 1, p.second), 1), j) &&
-       perteneceJugada(make_pair(p, 2), j) &&
-       perteneceJugada(make_pair(make_pair(p.first + 1, p.second), 1), j)){
+    if(perteneceJugada(jugada(pos(p.first - 1, p.second), 1), j) &&
+       perteneceJugada(jugada(p, 2), j) &&
+       perteneceJugada(jugada(pos(p.first + 1, p.second), 1), j)){
         return true;
     }
     return false;
