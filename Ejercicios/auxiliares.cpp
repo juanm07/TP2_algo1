@@ -65,18 +65,53 @@ bool seJugoUnaMina(tablero& t, jugadas& j){
     return false;
 }
 
-/******++++**************************** EJERCICIO gano ***********+++***********************/
-bool juegoGanado(vector<pos> p, jugadas& j){
-    for(int i = 0; i < p.size(); i++){
-        if(!perteneceAJugadas(p[i], j)){
-            return false;
-        }
+/******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
+
+bool existeCaminoValido(tablero& t,banderitas& b,pos posJugada,jugadas& j){
+    int minas_ady_a_posJugada = minasAdyacentes(t,posJugada);
+    if(noEsMina(t,posJugada) && minas_ady_a_posJugada == 0 && hayCaminoLibre(t,b,posJugada,j)){
+        return true;
     }
-    return true;
+    else{
+        return false;
+    }
 }
 
-bool perteneceAJugadas(pos p, jugadas& j){
-    for(int i = 0; i < j.size(); i++){
+bool hayCaminoLibre(tablero& t, banderitas& b, pos posInicial, jugadas& j){
+    if(existeAdyacenteValida(t,b,posInicial,j)){
+        return true;
+    }
+    return false;
+}
+
+bool existeAdyacenteValida(tablero& t, banderitas& b, pos p, jugadas& j){
+    for(int i = -1; i<2;i++){
+        for(int k = -1;k<2;k++){
+            pos adyacente = {(p.first)-i, (p.second)-k};
+            if(esCasillaDeCamino(t,b,adyacente,j)){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool noEsMina(tablero& t, pos p){
+    if(t[p.first][p.second]){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+bool esCasillaDeCamino(tablero& t, banderitas& b, pos p, jugadas& j){
+    return (esAdyacenteValida(p,t) && !perteneceABanderitas(p,b)
+    && minasAdyacentes(t,p)== 0 && noEsMina(t,p) && !posEstaEnJugadas(p,j));
+}
+
+bool posEstaEnJugadas(pos p, jugadas& j){
+    for(int i = 0;i<j.size();i++){
         if(j[i].first == p){
             return true;
         }
@@ -84,14 +119,27 @@ bool perteneceAJugadas(pos p, jugadas& j){
     return false;
 }
 
-vector<pos> posicionesSinMinas (tablero& t){
-    vector<pos> res = { };
-    for(int i = 0; i < t.size(); i++) {
-        for (int k = 0; k < t.size(); k++) {
-            if(!t[i][k]){
-                res.push_back(make_pair(i,k));
+
+jugadas caminoLibre(tablero& t, banderitas& b, pos p, jugadas& j) {
+    jugadas camino;
+    pos casillaDeCamino = p;
+    for (int i = -1; i < 2; i++) {
+        for (int k = -1; k < 2; k++) {
+                if(esCasillaDeCamino(t,b,casillaDeCamino,j)){
+                    camino.push_back(jugada(pos(casillaDeCamino), minasAdyacentes(t, casillaDeCamino)));
+                    casillaDeCamino = pos(casillaDeCamino.first -i, casillaDeCamino.second - k );
+                }
             }
         }
+    return camino;
+}
+
+bool esFinalDeCamino(tablero& t, banderitas& b, pos p, jugadas& j){
+    if(existeAdyacenteValida(t,b,p,j) && minasAdyacentes(t,p)>=1 && noEsMina(t,p) && !posEstaEnJugadas(p,j) &&
+            !perteneceABanderitas(p,b)){
+        return true;
     }
-    return res;
+    else{
+        return false;
+    }
 }
