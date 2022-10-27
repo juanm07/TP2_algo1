@@ -12,9 +12,6 @@
 /******++++**************************** EJERCICIO plantarBanderita ***********+++***********************/
 bool perteneceABanderitas(pos p, banderitas& b);
 void intercambiarValoresVector(pos& x, pos& y);
-void removerBanderita(pos p, banderitas& b);
-
-
 /******++++**************************** EJERCICIO minasAdyacentes ***********+++***********************/
 bool esAdyacenteValida(pos p, tablero& t);
 bool coordenadaValida(int c, int n);
@@ -26,6 +23,15 @@ bool seJugoUnaMina(tablero& t, jugadas& j);
 bool juegoGanado(vector<pair<int,int>> p,jugadas& j);
 bool perteneceAJugadas(pos p, jugadas& j);
 vector<pair<int,int>> posicionesSinMinas (tablero& t);
+
+/******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
+vector<pos> posicionesFinalesDeCamino(pos p,tablero& t,banderitas& b,jugadas& j);
+void finalDeCamino(tablero& t, banderitas& b, pos p, jugadas& j);
+vector<pos> posicionesAdyacentes(pos p,tablero& t,banderitas& b,jugadas& j);
+bool casillaValida(pos p, tablero& t, banderitas& b, jugadas& j);
+bool esUnaMina(pos p, tablero& t);
+void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j);
+=======
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 bool esAdyacente121(pos p, jugadas& j);

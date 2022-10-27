@@ -13,6 +13,7 @@ using namespace std;
 
 /******++++**************************** EJERCICIO minasAdyacentes ***********+++***********************/
 bool esAdyacenteValida(pos p, tablero& t){
+    //Complejidad O(1)
     int largo_tablero = t.size();
     if(coordenadaValida(p.first,largo_tablero) && coordenadaValida(p.second,largo_tablero)){
         return true;
@@ -21,6 +22,7 @@ bool esAdyacenteValida(pos p, tablero& t){
 }
 
 bool coordenadaValida(int c, int n){
+    //Complejidad O(1)
     return (0<= c && c<n);
 }
 
@@ -30,6 +32,7 @@ bool coordenadaValida(int c, int n){
 /******++++**************************** EJERCICIO plantarBanderita ***********+++***********************/
 
 bool perteneceABanderitas(pos p, banderitas& b){
+    //Complejidad O(n)
     for(int i=0; i<b.size();i++){
         if(b[i]== p){
             return true;
@@ -38,16 +41,8 @@ bool perteneceABanderitas(pos p, banderitas& b){
     return false;
 }
 
-void removerBanderita(pos p, banderitas& b){
-    for(int i = 0; i<b.size();i++){
-        if(b[i]==p){
-            intercambiarValoresVector(b[i],b[b.size()-1]);
-            b.pop_back();
-        }
-    }
-}
-
 void intercambiarValoresVector(pos& x, pos& y){
+    //Complejidad O(1)
     pos temp = x;
     x = y;
     y = temp;
@@ -56,6 +51,7 @@ void intercambiarValoresVector(pos& x, pos& y){
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
 
 bool seJugoUnaMina(tablero& t, jugadas& j){
+    //Complejidad O(n)
     for(int i = 0; i<j.size();i++){
         pos posicionJugada = j[i].first;
         if(t[posicionJugada.first][posicionJugada.second]){
@@ -78,6 +74,7 @@ bool juegoGanado(vector<pos> p, jugadas& j){
 }
 
 bool perteneceAJugadas(pos p, jugadas& j){
+    //Complejidad O(n)
     for(int i = 0; i < j.size(); i++){
         if(j[i].first == p){
             return true;
@@ -87,6 +84,7 @@ bool perteneceAJugadas(pos p, jugadas& j){
 }
 
 vector<pos> posicionesSinMinas (tablero& t){
+    //Complejidad O(n^2)
     vector<pos> res = { };
     for(int i = 0; i < t.size(); i++) {
         for (int k = 0; k < t.size(); k++) {
@@ -96,6 +94,67 @@ vector<pos> posicionesSinMinas (tablero& t){
         }
     }
     return res;
+}
+
+/******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
+void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j){
+    //Complejidad: O(n^2) Preguntar tema recursion
+    vector <pos> posAdy = posicionesAdyacentes(p, t, b, j); //O(n^2)
+    for(int i = 0; i < posAdy.size(); i++){
+        if(!perteneceAJugadas(posAdy[i], j)){
+            j.push_back(jugada(posAdy[i], 0));
+            finalDeCamino(t, b, p, j);
+            descubreAutomatico(posAdy[i], t, b, j);
+        }
+    }
+}
+
+vector<pos> posicionesAdyacentes(pos p,tablero& t,banderitas& b,jugadas& j){
+    //Complejidad: O(n^2)
+    vector <pos> res;
+    for(int i = -1; i<2;i++){
+        for(int k = -1; k<2;k++){
+            pos posActual = pos(p.first - i, p.second - k );
+            if(casillaValida(posActual,t,b,j) && (i!=0 || k!=0)){
+                res.push_back(posActual);
+            }
+        }
+    }
+    return res;
+}
+
+void finalDeCamino(tablero& t, banderitas& b, pos p, jugadas& j){
+    //Complejidad: O(n^2)
+    vector<pos> posFinales = posicionesFinalesDeCamino(p, t, b, j);
+    for(int i = 0; i < posFinales.size(); i++){
+        j.push_back(jugada(posFinales[i], minasAdyacentes(t, posFinales[i])));
+    }
+}
+
+vector<pos> posicionesFinalesDeCamino(pos p,tablero& t,banderitas& b,jugadas& j){
+    //Complejidad: O(n^2)
+    vector <pos> res = { };
+    for(int i = -1; i<2;i++){
+        for(int k = -1; k<2;k++){
+            pos posActual = pos(p.first - i, p.second - k );
+            if(esAdyacenteValida(posActual, t) && !perteneceAJugadas(posActual, j) && !perteneceABanderitas(posActual, b) &&
+               !esUnaMina(p, t) && minasAdyacentes(t, posActual)>0 && (i!=0 || k!=0)){
+                res.push_back(posActual);
+            }
+        }
+    }
+    return res;
+}
+
+bool esUnaMina(pos p, tablero& t){
+    //Complejidad: O(1)
+    return t[p.first][p.second];
+}
+
+bool casillaValida(pos p, tablero& t, banderitas& b, jugadas& j){
+    //Complejidad: O(n^2)
+    return (esAdyacenteValida(p, t) && !perteneceAJugadas(p, j) && !perteneceABanderitas(p, b) && !esUnaMina(p, t) &&
+            minasAdyacentes(t, p)==0);
 }
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
@@ -108,6 +167,7 @@ bool esAdyacente121(pos p, jugadas& j){
 }
 
 bool es121Horizontal(pos p, jugadas& j){
+    //Complejidad: O(n) ?
     if(perteneceJugada(jugada(pos(p.first, p.second -1 ), 1), j) &&
        perteneceJugada(jugada(p, 2), j) &&
        perteneceJugada(jugada(pos(p.first, p.second + 1 ), 1), j)){
@@ -117,6 +177,7 @@ bool es121Horizontal(pos p, jugadas& j){
 }
 
 bool es121Vertical(pos p, jugadas& j){
+    //Complejidad: O(n) ?
     if(perteneceJugada(jugada(pos(p.first - 1, p.second), 1), j) &&
        perteneceJugada(jugada(p, 2), j) &&
        perteneceJugada(jugada(pos(p.first + 1, p.second), 1), j)){
@@ -126,6 +187,7 @@ bool es121Vertical(pos p, jugadas& j){
 }
 
 bool perteneceJugada(jugada j0, jugadas& j){
+    //Complejidad: O(n)
     for(int i=0; i < j.size(); i++){
         if(j[i] == j0){
             return true;
