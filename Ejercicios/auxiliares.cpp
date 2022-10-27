@@ -63,7 +63,6 @@ bool seJugoUnaMina(tablero& t, jugadas& j){
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
 bool juegoGanado(vector<pos> p, jugadas& j){
-    //Complejidad O(n^2) por perteneceAJugadas
     if(p.size() == j.size()){
         for(int i = 0; i < p.size(); i++){
             if(perteneceAJugadas(p[i], j)){
@@ -158,11 +157,8 @@ bool casillaValida(pos p, tablero& t, banderitas& b, jugadas& j){
             minasAdyacentes(t, p)==0);
 }
 
-
-
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 bool esAdyacente121(pos p, jugadas& j){
-    //Complejidad: O(n) ?
     if( es121Horizontal(pos(p.first - 1, p.second), j) || es121Horizontal(pos(p.first + 1, p.second), j) ||
         es121Vertical(pos(p.first, p.second - 1), j) || es121Vertical(pos(p.first, p.second + 1), j)){
         return true;
@@ -199,4 +195,3 @@ bool perteneceJugada(jugada j0, jugadas& j){
     }
     return false;
 }
-
