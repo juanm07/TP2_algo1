@@ -15,6 +15,7 @@ using namespace std;
 /******++++**************************** EJERCICIO minasAdyacentes ***********+++***********************/
 
 int minasAdyacentes(tablero& t, pos p) {
+    //Complejidad: O(1) constante
     int res = 0;
     for(int i = -1; i<2;i++){
         for(int j = -1;j<2;j++){
@@ -30,17 +31,23 @@ int minasAdyacentes(tablero& t, pos p) {
 /******++++**************************** EJERCICIO plantarBanderita ***********+++***********************/
 
 void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
-
-    if(perteneceABanderitas(p,b)){
-        removerBanderita(p,b);
+    //Complejidad: O(n)
+    int res = 0;
+    for(int i=0; i<b.size();i++){
+        if(b[i]== p){
+            intercambiarValoresVector(b[i],b[b.size()-1]);
+            b.pop_back();
+            res++;
+        }
     }
-    else{
+    if(res==0){
         b.push_back(p);
     }
 }
 
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
 bool perdio(tablero& t, jugadas& j) {
+    //Complejidad: O(n)
     if(seJugoUnaMina(t,j)){
         return true;
     }
@@ -51,17 +58,26 @@ bool perdio(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
 bool gano(tablero& t, jugadas& j) {
+    //Complejidad O(n^2) ?
     return juegoGanado(posicionesSinMinas(t), j);
 }
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
-    caminoLibre(t,b,p,j);
+    //Complejidad: O(n^8)
+    if(casillaValida(p,t,b,j)){
+        descubreAutomatico(p,t,b,j);
+    }else{
+        j.push_back(jugada(p, minasAdyacentes(t, p)));
+    }
 }
-
-
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
+
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
-    // ...
+    //Complejidad: O(n^3)
+    if(!perteneceAJugadas(p, j) && !perteneceABanderitas(p, b) && esAdyacente121(p, j)){
+        return true;
+    }
+    return false;
 }
 
