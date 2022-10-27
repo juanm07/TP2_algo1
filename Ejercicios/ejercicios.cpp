@@ -64,7 +64,7 @@ bool gano(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
-    //Complejidad: O(n^8)
+    //Complejidad: O(n^3)
     if(casillaValida(p,t,b,j)){
         descubreAutomatico(p,t,b,j);
     }else{
