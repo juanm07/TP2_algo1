@@ -100,7 +100,7 @@ vector<pos> posicionesSinMinas (tablero& t){
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j){
     //Complejidad: O(n^2) Preguntar tema recursion
-    vector <pos> posAdy = posicionesAdyacentes(p, t, b, j);
+    vector <pos> posAdy = posicionesAdyacentes(p, t, b, j); //O(n^2)
     for(int i = 0; i < posAdy.size(); i++){
         if(!perteneceAJugadas(posAdy[i], j)){
             j.push_back(jugada(posAdy[i], 0));
