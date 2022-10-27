@@ -9,7 +9,10 @@
 using namespace std;
 
 TEST(sacarBanderita, haybanderita){
-    tablero t = {{false,false,false},{true,false,false},{false,true,false}};
+    tablero t = {{cVACIA,cVACIA,cVACIA},
+                 {cMINA,cVACIA,cVACIA},
+                 {cVACIA,cMINA,cVACIA}
+                 };
     jugadas j = {{{0,0},1}};
     pos p(1,0);
     banderitas b0 = {{1,0},{0,0}};
@@ -19,7 +22,10 @@ TEST(sacarBanderita, haybanderita){
 }
 
 TEST(ponerBanderita, noHaybanderita){
-    tablero t = {{false,true,false},{false,false,false},{false,true,false}};
+    tablero t = {{cVACIA,cVACIA,cVACIA},
+                 {cMINA,cVACIA,cVACIA},
+                 {cVACIA,cMINA,cVACIA}
+                };
     jugadas j = {{{0,0},1}};
     pos p(1,0);
     banderitas b0 = {{0,0}};
