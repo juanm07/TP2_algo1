@@ -63,6 +63,7 @@ bool seJugoUnaMina(tablero& t, jugadas& j){
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
 bool juegoGanado(vector<pos> p, jugadas& j){
+    //Complejidad O(n^2) por perteneceAJugadas
     if(p.size() == j.size()){
         for(int i = 0; i < p.size(); i++){
             if(perteneceAJugadas(p[i], j)){
