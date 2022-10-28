@@ -90,7 +90,7 @@ vector<pos> posicionesSinMinas (tablero& t){
     for(int i = 0; i < t.size(); i++) {
         for (int k = 0; k < t.size(); k++) {
             if(!t[i][k]){
-                res.push_back(make_pair(i,k));
+                res.push_back(pos(i,k));
             }
         }
     }
