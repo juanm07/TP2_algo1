@@ -27,7 +27,7 @@ vector<pair<int,int>> posicionesSinMinas (tablero& t);
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 vector<pos> posicionesFinalesDeCamino(pos p,tablero& t,banderitas& b,jugadas& j);
 void finalDeCamino(tablero& t, banderitas& b, pos p, jugadas& j);
-vector<pos> posicionesAdyacentes(pos p,tablero& t,banderitas& b,jugadas& j);
+vector<pos> posicionesAdyacentesSinMinas(pos p,tablero& t,banderitas& b,jugadas& j);
 bool casillaValida(pos p, tablero& t, banderitas& b, jugadas& j);
 bool esUnaMina(pos p, tablero& t);
 void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j);
