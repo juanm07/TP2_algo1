@@ -153,7 +153,7 @@ bool esUnaMina(pos p, tablero& t){
 }
 
 bool casillaValida(pos p, tablero& t, banderitas& b, jugadas& j){
-    //Complejidad: O(n^2)
+    //Complejidad: O(n)
     return (esAdyacenteValida(p, t) && !perteneceAJugadas(p, j) && !perteneceABanderitas(p, b) && !esUnaMina(p, t) &&
             minasAdyacentes(t, p)==0);
 }
