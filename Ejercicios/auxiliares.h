@@ -37,4 +37,4 @@ void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j);
 bool esAdyacente121(pos p, jugadas& j);
 bool es121Horizontal(pos p, jugadas& j);
 bool es121Vertical(pos p, jugadas& j);
-bool perteneceJugada(jugada j0, jugadas& j);
+bool seJugo(jugada j0, jugadas& j);
