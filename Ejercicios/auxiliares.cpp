@@ -117,7 +117,7 @@ vector<pos> posicionesAdyacentesSinMinas(pos p,tablero& t,banderitas& b,jugadas&
     for(int i = -1; i<2;i++){
         for(int k = -1; k<2;k++){
             pos posActual = pos(p.first - i, p.second - k );
-            if(casillaValida(posActual,t,b,j) && (i!=0 || k!=0) && minasAdyacentes(t, p)==0){
+            if(casillaValida(posActual,t,b,j) && (i!=0 || k!=0) && minasAdyacentes(t, posActual)==0){
                 res.push_back(posActual);
             }
         }
