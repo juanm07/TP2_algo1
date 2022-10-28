@@ -101,7 +101,7 @@ vector<pos> posicionesSinMinas (tablero& t){
 void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j){
     //Complejidad: O(n^2) Preguntar tema recursion
     //Caso base: Cuando no hay posiciones adyacentes sin minas
-    vector <pos> posAdy = posicionesAdyacentesSinMinas(p, t, b, j); //O(n^2)
+    vector <pos> posAdy = posicionesAdyacentesSinMinas(p, t, b, j); //O(n)
     for(int i = 0; i < posAdy.size(); i++){
         if(!perteneceAJugadas(posAdy[i], j)){
             j.push_back(jugada(posAdy[i], 0));
