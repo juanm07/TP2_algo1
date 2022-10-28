@@ -168,9 +168,9 @@ bool esAdyacente121(pos p, jugadas& j){
 
 bool es121Horizontal(pos p, jugadas& j){
     //Complejidad: O(n) ?
-    if(perteneceJugada(jugada(pos(p.first, p.second -1 ), 1), j) &&
-       perteneceJugada(jugada(p, 2), j) &&
-       perteneceJugada(jugada(pos(p.first, p.second + 1 ), 1), j)){
+    if(seJugo(jugada(pos(p.first, p.second -1 ), 1), j) &&
+       seJugo(jugada(p, 2), j) &&
+       seJugo(jugada(pos(p.first, p.second + 1 ), 1), j)){
         return true;
     }
     return false;
@@ -178,15 +178,15 @@ bool es121Horizontal(pos p, jugadas& j){
 
 bool es121Vertical(pos p, jugadas& j){
     //Complejidad: O(n) ?
-    if(perteneceJugada(jugada(pos(p.first - 1, p.second), 1), j) &&
-       perteneceJugada(jugada(p, 2), j) &&
-       perteneceJugada(jugada(pos(p.first + 1, p.second), 1), j)){
+    if(seJugo(jugada(pos(p.first - 1, p.second), 1), j) &&
+       seJugo(jugada(p, 2), j) &&
+       seJugo(jugada(pos(p.first + 1, p.second), 1), j)){
         return true;
     }
     return false;
 }
 
-bool perteneceJugada(jugada j0, jugadas& j){
+bool seJugo(jugada j0, jugadas& j){
     //Complejidad: O(n)
     for(int i=0; i < j.size(); i++){
         if(j[i] == j0){
