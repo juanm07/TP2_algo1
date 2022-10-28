@@ -158,6 +158,19 @@ bool casillaValida(pos p, tablero& t, banderitas& b, jugadas& j){
 }
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
+bool hayPosicionSugerible(jugadas& j, banderitas& b, tablero& t){
+    //Complejidad: O(n^3) ?
+    for(int i=0; i < t.size(); i++){
+        for(int k=0; k < t.size(); k++){
+            pos p = pos(i,k);
+            if(!perteneceAJugadas(p, j) && !perteneceABanderitas(p, b) && esAdyacente121(p, j)){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 bool esAdyacente121(pos p, jugadas& j){
     if( es121Horizontal(pos(p.first - 1, p.second), j) || es121Horizontal(pos(p.first + 1, p.second), j) ||
         es121Vertical(pos(p.first, p.second - 1), j) || es121Vertical(pos(p.first, p.second + 1), j)){
