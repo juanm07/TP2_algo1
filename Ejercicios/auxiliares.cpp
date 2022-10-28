@@ -167,7 +167,7 @@ bool esAdyacente121(pos p, jugadas& j){
 }
 
 bool es121Horizontal(pos p, jugadas& j){
-    //Complejidad: O(n) ?
+    //Complejidad: O(n)
     if(seJugo(jugada(pos(p.first, p.second -1 ), 1), j) &&
        seJugo(jugada(p, 2), j) &&
        seJugo(jugada(pos(p.first, p.second + 1 ), 1), j)){
@@ -177,7 +177,7 @@ bool es121Horizontal(pos p, jugadas& j){
 }
 
 bool es121Vertical(pos p, jugadas& j){
-    //Complejidad: O(n) ?
+    //Complejidad: O(n)
     if(seJugo(jugada(pos(p.first - 1, p.second), 1), j) &&
        seJugo(jugada(p, 2), j) &&
        seJugo(jugada(pos(p.first + 1, p.second), 1), j)){
