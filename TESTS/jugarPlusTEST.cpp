@@ -99,14 +99,14 @@ TEST(jugarPlusTEST,todasMinasMenosUna){
     ASSERT_TRUE(mismasJugadas(jugadasValidas,expected));
 }
 
-TEST(jugarPlusTEST,tableroSinMinas){
+TEST(jugarPlusTEST,tableroConSoloUnaMina){
     tablero t = {
-            {cVACIA,cVACIA,cVACIA},
+            {cMINA,cVACIA,cVACIA},
             {cVACIA,cVACIA,cVACIA},
             {cVACIA,cVACIA,cVACIA}
     };
     
-    jugadas jugadasValidas{ jugada(pos(0,0),0), jugada(pos(0,1), 0)};
+    jugadas jugadasValidas{ jugada(pos(0,1), 0)};
     
     banderitas b = {
             pos(0,2)
@@ -114,7 +114,7 @@ TEST(jugarPlusTEST,tableroSinMinas){
     
     pos posicionJugada = {2,2};
     
-    jugadas expected = {jugada(pos(0,0),0), jugada(pos(0,1), 0), jugada(pos(2,2),0),
+    jugadas expected = {jugada(pos(0,1), 0), jugada(pos(2,2),0),
     jugada(pos(2,1),0), jugada(pos(2,0),0),jugada(pos(1,2),0),jugada(pos(1,0),0),
     jugada(pos(0,2),0)};
     
