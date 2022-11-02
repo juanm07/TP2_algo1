@@ -99,7 +99,7 @@ TEST(jugarPlusTEST,todasMinasMenosUna){
     ASSERT_TRUE(mismasJugadas(jugadasValidas,expected));
 }
 
-TEST(jugarPlusTEST,tableroConSoloUnaMina){
+TEST(jugarPlusTEST,tableroSoloUnaMina){
     tablero t = {
             {cMINA,cVACIA,cVACIA},
             {cVACIA,cVACIA,cVACIA},
@@ -107,39 +107,38 @@ TEST(jugarPlusTEST,tableroConSoloUnaMina){
     };
     
     jugadas jugadasValidas{ jugada(pos(0,1), 0)};
-    
+
     banderitas b = {
             pos(0,2)
     };
-    
+
     pos posicionJugada = {2,2};
-    
+
     jugadas expected = {jugada(pos(0,1), 0), jugada(pos(2,2),0),
     jugada(pos(2,1),0), jugada(pos(2,0),0),jugada(pos(1,2),0),jugada(pos(1,0),0),
     jugada(pos(0,2),0)};
-    
+
     jugarPlus(t,b,posicionJugada,jugadasValidas);
     ASSERT_TRUE(mismasJugadas(jugadasValidas,expected));
 }
 
-TEST(jugarPlusTEST,todasBanderitas){
+TEST(jugarPlusTEST,posicionRodeadaDeBanderitas){
     tablero t = {
-            {cVACIA,cVACIA,cVACIA},
+            {cMINA,cVACIA,cVACIA},
             {cVACIA,cVACIA,cVACIA},
             {cVACIA,cVACIA,cVACIA}
     };
-    
+
     jugadas jugadasValidas={ };
-    
+
     banderitas b = {
             pos(0,0), pos(0,1), pos(0,2), pos(1,0), pos(1,1), pos(1,2), pos(2,0), pos(2,1)
     };
-    
+
     pos posicionJugada = {2,2};
-    
+
     jugadas expected = {jugada(pos(2,2),0)};
-    
+
     jugarPlus(t,b,posicionJugada,jugadasValidas);
     ASSERT_TRUE(mismasJugadas(jugadasValidas,expected));
 }
-
