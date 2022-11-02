@@ -75,9 +75,15 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
    //Complejidad: O(n)
-    if(!perteneceAJugadas(p, j) && !perteneceABanderitas(p, b) && esAdyacente121(p, j)){
-        return true;
+    for(int i = 0;i<t.size();i++){
+        for(int k=0;k<t[i].size();k++){
+            p = {i,k};
+            if(!perteneceAJugadas(p, j) && !perteneceABanderitas(p, b) && esAdyacente121(p, j)){
+                return true;
+            }
+        }
     }
+
     return false;
 }
 
