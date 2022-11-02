@@ -83,7 +83,7 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
             }
         }
     }
-
+    p = { };
     return false;
 }
 
