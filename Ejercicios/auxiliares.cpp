@@ -33,12 +33,13 @@ bool coordenadaValida(int c, int n){
 
 bool perteneceABanderitas(pos p, banderitas& b){
     //Complejidad O(n)
+    bool res = false;
     for(int i=0; i<b.size();i++){
         if(b[i]== p){
-            return true;
+            res = true;
         }
     }
-    return false;
+    return res;
 }
 
 void intercambiarValoresVector(pos& x, pos& y){
@@ -63,25 +64,27 @@ bool seJugoUnaMina(tablero& t, jugadas& j){
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
 bool juegoGanado(vector<pos> p, jugadas& j){
-    //Complejidad O(n^2) por perteneceAJugadas
+    //Complejidad O(n^4) por perteneceAJugadas
+    int res = 0;
     if(p.size() == j.size()){
         for(int i = 0; i < p.size(); i++){
             if(perteneceAJugadas(p[i], j)){
-                return true;
+                res++;
             }
         }
     }
-    return false;
+    return res == p.size();
 }
 
 bool perteneceAJugadas(pos p, jugadas& j){
-    //Complejidad O(n)
+    //Complejidad O(n2)
+    bool res = false;
     for(int i = 0; i < j.size(); i++){
         if(j[i].first == p){
-            return true;
+            res = true;
         }
     }
-    return false;
+    return res;
 }
 
 vector<pos> posicionesSinMinas (tablero& t){
@@ -159,6 +162,7 @@ bool casillaValida(pos p, tablero& t, banderitas& b, jugadas& j){
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 bool esAdyacente121(pos p, jugadas& j){
+
     if( es121Horizontal(pos(p.first - 1, p.second), j) || es121Horizontal(pos(p.first + 1, p.second), j) ||
         es121Vertical(pos(p.first, p.second - 1), j) || es121Vertical(pos(p.first, p.second + 1), j)){
         return true;
