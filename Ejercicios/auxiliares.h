@@ -31,7 +31,6 @@ vector<pos> posicionesAdyacentesSinMinas(pos p,tablero& t,banderitas& b,jugadas&
 bool casillaValida(pos p, tablero& t, banderitas& b, jugadas& j);
 bool esUnaMina(pos p, tablero& t);
 void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j);
-=======
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 bool esAdyacente121(pos p, jugadas& j);
