@@ -15,10 +15,11 @@ using namespace std;
 bool esAdyacenteValida(pos p, tablero& t){
     //Complejidad O(1)
     int largo_tablero = t.size();
+    bool res = false;
     if(coordenadaValida(p.first,largo_tablero) && coordenadaValida(p.second,largo_tablero)){
-        return true;
+        res = true;
     }
-    return false;
+    return res;
 }
 
 bool coordenadaValida(int c, int n){
@@ -77,12 +78,14 @@ bool juegoGanado(vector<pos> p, jugadas& j){
 }
 
 bool perteneceAJugadas(pos p, jugadas& j){
-    //Complejidad O(n2)
+    //Complejidad O(n^2)
     bool res = false;
-    for(int i = 0; i < j.size(); i++){
+    int i = 0;
+    while(i<j.size() && !res){
         if(j[i].first == p){
             res = true;
         }
+        i++;
     }
     return res;
 }
