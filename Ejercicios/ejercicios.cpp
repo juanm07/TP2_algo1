@@ -60,7 +60,7 @@ bool perdio(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
 bool gano(tablero& t, jugadas& j) {
-    //Complejidad O(n^2)
+    //Complejidad O(n^4)
     return juegoGanado(posicionesSinMinas(t), j);
 }
 
