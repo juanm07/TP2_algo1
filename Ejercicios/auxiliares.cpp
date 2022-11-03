@@ -106,12 +106,12 @@ vector<pos> posicionesSinMinas (tablero& t){
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j){
-    //Complejidad de una sola ejecución: O(n^2) Preguntar tema recursion
+    //Complejidad de una sola ejecución: O(n^2) 
     // La cantidad de ejecuciones es equivalente a la cantidad de casilleros con minasAdyacentes=0. 
     // Caso base: Cuando no hay posiciones adyacentes con minasAdyacentes=0, es decir, cuando posAdy es un vector vacío.
     vector <pos> posAdy = posicionesAdyacentesSinMinas(p, t, b, j); //O(n)
     for(int i = 0; i < posAdy.size(); i++){
-        if(!perteneceAJugadas(posAdy[i], j)){
+        if(!perteneceAJugadas(posAdy[i], j)){ //perteneceAjugadas tiene complejidad O(n^2). Esto segun lo interpretamos. 
             j.push_back(jugada(posAdy[i], 0));
             finalDeCamino(t, b, posAdy[i] , j); /// Si la posición tiene una adyacente con minasAdyacentes>0, se la considera final de camino y se la añade a jugadas.
             descubreAutomatico(posAdy[i], t, b, j);
@@ -134,7 +134,7 @@ vector<pos> posicionesAdyacentesSinMinas(pos p,tablero& t,banderitas& b,jugadas&
 }
 
 void finalDeCamino(tablero& t, banderitas& b, pos p, jugadas& j){
-    //Complejidad: O(n)
+    //Complejidad: O(n^2)
     vector<pos> posFinales = posicionesFinalesDeCamino(p, t, b, j);
     for(int i = 0; i < posFinales.size(); i++){
         j.push_back(jugada(posFinales[i], minasAdyacentes(t, posFinales[i])));
@@ -142,7 +142,7 @@ void finalDeCamino(tablero& t, banderitas& b, pos p, jugadas& j){
 }
 
 vector<pos> posicionesFinalesDeCamino(pos p,tablero& t,banderitas& b,jugadas& j){
-    //Complejidad: O(n)
+    //Complejidad: O(n^2)
     vector <pos> res = { };
     for(int i = -1; i<2;i++){
         for(int k = -1; k<2;k++){
@@ -161,13 +161,14 @@ bool esUnaMina(pos p, tablero& t){
 }
 
 bool casillaValida(pos p, tablero& t, banderitas& b, jugadas& j){
-    //Complejidad: O(n)
+    //Complejidad: O(n^2)
     return (esAdyacenteValida(p, t) && !perteneceAJugadas(p, j) && !perteneceABanderitas(p, b) && !esUnaMina(p, t));
 }
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 bool esAdyacente121(pos p, jugadas& j){
-
+    //Complejidad: O(n)
+    //Todas las auxiliares que evalua el if tienen complejidad lineal
     if( es121Horizontal(pos(p.first - 1, p.second), j) || es121Horizontal(pos(p.first + 1, p.second), j) ||
         es121Vertical(pos(p.first, p.second - 1), j) || es121Vertical(pos(p.first, p.second + 1), j)){
         return true;
