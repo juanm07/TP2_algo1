@@ -54,6 +54,7 @@ void intercambiarValoresVector(pos& x, pos& y){
 
 bool seJugoUnaMina(tablero& t, jugadas& j){
     //Complejidad O(n)
+    //Si n es el tamaño del vector j, en el peor caso realizo n operaciones.
     for(int i = 0; i<j.size();i++){
         pos posicionJugada = j[i].first;
         if(t[posicionJugada.first][posicionJugada.second]){
