@@ -32,6 +32,7 @@ int minasAdyacentes(tablero& t, pos p) {
 
 void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
     //Complejidad: O(n)
+    //Si n es el tamaño del vector b, en el peor caso realizo n operaciones.
     int res = 0;
     for(int i=0; i<b.size();i++){
         if(b[i]== p){
@@ -48,6 +49,7 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
 bool perdio(tablero& t, jugadas& j) {
     //Complejidad: O(n)
+    //seJugoUnaMina en el peor caso tiene complejidad lineal
     if(seJugoUnaMina(t,j)){
         return true;
     }
@@ -58,7 +60,7 @@ bool perdio(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
 bool gano(tablero& t, jugadas& j) {
-    //Complejidad O(n^2) ?
+    //Complejidad O(n^2)
     return juegoGanado(posicionesSinMinas(t), j);
 }
 
