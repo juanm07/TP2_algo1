@@ -124,13 +124,17 @@ void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j){
 }
 
 vector<pos> posicionesAdyacentesSinMinas(pos p,tablero& t,banderitas& b,jugadas& j){
-    //Complejidad: O(n)
+    /*
+    Complejidad: O(|b|+|j|)
+    Por casillaValida que tiene complejidad |b|+|j|, y la cantidad operaciones solo va a depender de |b| y |j| (los "for" se ejecutan una
+    cantidad determinada de veces)
+    */
     vector <pos> res;
     for(int i = -1; i<2;i++){
         for(int k = -1; k<2;k++){
             pos posActual = pos(p.first - i, p.second - k );
             if(casillaValida(posActual,t,b,j) && (i!=0 || k!=0) && minasAdyacentes(t, posActual)==0){
-                res.push_back(posActual);
+                res.push_back(posActual); //Complejidad O(1) amortizado
             }
         }
     }
@@ -146,13 +150,16 @@ void finalDeCamino(tablero& t, banderitas& b, pos p, jugadas& j){
 }
 
 vector<pos> posicionesFinalesDeCamino(pos p,tablero& t,banderitas& b,jugadas& j){
-    //Complejidad: O(n^2)
+    /*
+    Complejidad: O(|b|+|j|)
+    La justifiacion es similar a la de posicionesAdyacentesSinMinas
+    */
     vector <pos> res = { };
     for(int i = -1; i<2;i++){
         for(int k = -1; k<2;k++){
             pos posActual = pos(p.first - i, p.second - k );
             if(casillaValida(posActual,t,b,j) && minasAdyacentes(t, posActual)>0 && (i!=0 || k!=0)){
-                res.push_back(posActual);
+                res.push_back(posActual); //Complejidad O(1) amortizado
             }
         }
     }
