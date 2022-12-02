@@ -85,7 +85,15 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
-   //Complejidad: O(|t|^2(|b|+|j|))
+   /*
+   Complejidad: O(|t|^2(|b|+|j|))
+   Aclaracion, el tablero es cuadrado entonces |t|=|t[i]| para todo i valido. 
+   La cantidad de iteraciones del primer "for" depende de |t|, a su vez el segundo "for" se va a ejecutar, en el peor caso, |t|*|t| veces 
+   (ya que esta anidado en el primer "for"). Viendo la complejidad del segundo "for", las funciones perteneceAJugadas, esAdyacente121
+   y perteneceABanderitas tienen complejidad de peor caso |j|, |j| y |b| respectivamente. Entonces, la complejidad de peor caso va a ser 
+   (2|j|+|b|) * |t|, que seria equivalente (aproximadamente) a (|j|+|b|) * |t|.
+   De ahi que la complejidad final sea de |t|^2(|b|+|j|)
+   */
     for(int i = 0;i<t.size();i++){
         for(int k=0;k<t[i].size();k++){
             p = {i,k};
