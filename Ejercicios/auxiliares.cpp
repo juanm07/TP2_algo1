@@ -83,7 +83,11 @@ bool juegoGanado(vector<pos> p, jugadas& j){
 }
 
 bool perteneceAJugadas(pos p, jugadas& j){
-    //Complejidad O(|j|)
+    /*
+    Complejidad O(|j|)
+    La cantidad de operaciones elementales de la funcion depende de longitud de jugadas. En el peor caso, el while va a iterar |j| veces.
+    Por lo tanto, la complejidad va a depender de |j|.
+    */
     bool res = false;
     int i = 0;
     while(i<j.size() && !res){
@@ -96,12 +100,19 @@ bool perteneceAJugadas(pos p, jugadas& j){
 }
 
 vector<pos> posicionesSinMinas (tablero& t){
-    //Complejidad O(|t|^2)
+    /*
+    Complejidad O(|t|^2)
+    La cantidad de iteraciones que realiza el primer "for" depende de |t|, por lo que en el peor caso se va a ejecutar |t| veces. 
+    El segundo "for" se va a ejecutar |t| veces multiplicado por |t|, ya que es un "for" anidado dentro de otro. Esto hace que la 
+    complejidad total del programa sea |t|*|t|. La funcion push_back tiene complejidad O(1) (amortizado, por un tema de memoria) pero
+    esto no afecta a la complejidad asintotica.
+    
+    */
     vector<pos> res = { };
     for(int i = 0; i < t.size(); i++) {
         for (int k = 0; k < t.size(); k++) {
             if(!t[i][k]){
-                res.push_back(pos(i,k));
+                res.push_back(pos(i,k)); //O(1) amortizado
             }
         }
     }
