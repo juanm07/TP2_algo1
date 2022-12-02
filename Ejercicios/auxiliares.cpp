@@ -70,7 +70,7 @@ bool seJugoUnaMina(tablero& t, jugadas& j){
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
 bool juegoGanado(vector<pos> p, jugadas& j){
-    //Complejidad O(n^4) por perteneceAJugadas
+    //Complejidad O(|p|*|j|) por perteneceAJugadas
     int res = 0;
     if(p.size() == j.size()){
         for(int i = 0; i < p.size(); i++){
@@ -83,7 +83,7 @@ bool juegoGanado(vector<pos> p, jugadas& j){
 }
 
 bool perteneceAJugadas(pos p, jugadas& j){
-    //Complejidad O(n^2)
+    //Complejidad O(|j|)
     bool res = false;
     int i = 0;
     while(i<j.size() && !res){
@@ -96,7 +96,7 @@ bool perteneceAJugadas(pos p, jugadas& j){
 }
 
 vector<pos> posicionesSinMinas (tablero& t){
-    //Complejidad O(n^2)
+    //Complejidad O(|t|^2)
     vector<pos> res = { };
     for(int i = 0; i < t.size(); i++) {
         for (int k = 0; k < t.size(); k++) {
