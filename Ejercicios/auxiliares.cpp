@@ -125,7 +125,7 @@ void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j){
     Complejidad de una sola ejecución: O(|b|+|j|) 
     La cantidad de ejecuciones es equivalente a la cantidad de casilleros con minasAdyacentes=0. 
     Caso base: Cuando no hay posiciones adyacentes con minasAdyacentes=0, es decir, cuando posAdy es un vector vacío.
-    Como el tablero debe tener al maneos una mina, en el peor de los casos la cantidad de ejecuciones sería |t|-4, por lo que para el caso recursivo la complejidad sería: O(|t|*(|b|+|j|))
+    Como el tablero debe tener al maneos una mina, en el peor de los casos la cantidad de ejecuciones sería |t|-4 (si consideramos que el tablero tiene una sola mina y está en una esquina), por lo que para el caso recursivo la complejidad sería: O(|t|*(|b|+|j|))
     */ 
     vector <pos> posAdy = posicionesAdyacentesSinMinas(p, t, b, j); //O(|b|+|j|)
     for(int i = 0; i < posAdy.size(); i++){
