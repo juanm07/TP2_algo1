@@ -36,8 +36,8 @@ int minasAdyacentes(tablero& t, pos p) {
 
 void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
     /*
-    Complejidad: O(n)
-    Si n es el tamaño del vector b, en el peor caso realizo n operaciones. Porque mi programa va a hacer busqueda lineal (con el "for") sobre el vector
+    Complejidad: O(|b|)
+    En el peor caso realizo |b| operaciones. Porque mi programa va a hacer busqueda lineal (con el "for") sobre el vector
     banderitas, en busca de la posicion p. Suponiendo que p no está en el vector, tendria que recorrerlo hasta el final (peor caso).
     Lo anterior es casi equivalente al caso donde p está en la ultima posicion del vector b.
     */
@@ -56,7 +56,7 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
 
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
 bool perdio(tablero& t, jugadas& j) {
-    //Complejidad: O(n)
+    //Complejidad: O(|j|)
     //seJugoUnaMina en el peor caso tiene complejidad lineal
     if(seJugoUnaMina(t,j)){
         return true;
