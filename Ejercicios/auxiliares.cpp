@@ -122,7 +122,7 @@ vector<pos> posicionesSinMinas (tablero& t){
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j){
     /*
-    Complejidad de una sola ejecución: O(|b|+|j|+|posAdy|*(|j|+|j|+|b|)) 
+    Complejidad de una sola ejecución: O(|b|+|j|+8*(|j|+|j|+|b|)) 
     La cantidad de ejecuciones es equivalente a la cantidad de casilleros con minasAdyacentes=0. 
     Caso base: Cuando no hay posiciones adyacentes con minasAdyacentes=0, es decir, cuando posAdy es un vector vacío.
     */ 
