@@ -13,7 +13,11 @@ using namespace std;
 
 /******++++**************************** EJERCICIO minasAdyacentes ***********+++***********************/
 bool esAdyacenteValida(pos p, tablero& t){
-    //Complejidad O(1)
+    /*
+    Complejidad O(1)
+    La cantidad de operaciones elementales no depende del tamaño de t, ni de la posicion que ingrese, por lo que dicha cantidad siempre sera la misma
+    y por lo tanto, tendrá una complejidad de peor caso, lineal.
+    */
     int largo_tablero = t.size();
     bool res = false;
     if(coordenadaValida(p.first,largo_tablero) && coordenadaValida(p.second,largo_tablero)){
@@ -24,7 +28,7 @@ bool esAdyacenteValida(pos p, tablero& t){
 
 bool coordenadaValida(int c, int n){
     //Complejidad O(1)
-    return (0<= c && c<n);
+    return (0<= c && c<n); //Serian 3 operaciones elementales ("0<=c", "&&", "c<n")
 }
 
 
