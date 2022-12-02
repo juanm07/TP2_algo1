@@ -153,10 +153,10 @@ vector<pos> posicionesAdyacentesSinMinas(pos p,tablero& t,banderitas& b,jugadas&
 }
 
 void finalDeCamino(tablero& t, banderitas& b, pos p, jugadas& j){
-    //Complejidad: O(n^2)
+    //Complejidad: O(|b|+|j|)
     vector<pos> posFinales = posicionesFinalesDeCamino(p, t, b, j);
     for(int i = 0; i < posFinales.size(); i++){
-        j.push_back(jugada(posFinales[i], minasAdyacentes(t, posFinales[i])));
+        j.push_back(jugada(posFinales[i], minasAdyacentes(t, posFinales[i]))); //Complejidad O(1) amortizado
     }
 }
 
