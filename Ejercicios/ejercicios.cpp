@@ -35,8 +35,12 @@ int minasAdyacentes(tablero& t, pos p) {
 /******++++**************************** EJERCICIO plantarBanderita ***********+++***********************/
 
 void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
-    //Complejidad: O(n)
-    //Si n es el tamaño del vector b, en el peor caso realizo n operaciones.
+    /*
+    Complejidad: O(n)
+    Si n es el tamaño del vector b, en el peor caso realizo n operaciones. Porque mi programa va a hacer busqueda lineal (con el "for") sobre el vector
+    banderitas, en busca de la posicion p. Suponiendo que p no está en el vector, tendria que recorrerlo hasta el final (peor caso).
+    Lo anterior es casi equivalente al caso donde p está en la ultima posicion del vector b.
+    */
     int res = 0;
     for(int i=0; i<b.size();i++){
         if(b[i]== p){
@@ -46,7 +50,7 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
         }
     }
     if(res==0){
-        b.push_back(p);
+        b.push_back(p); //O(1) amortizado
     }
 }
 
