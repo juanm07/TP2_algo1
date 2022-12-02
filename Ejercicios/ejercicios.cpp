@@ -15,7 +15,11 @@ using namespace std;
 /******++++**************************** EJERCICIO minasAdyacentes ***********+++***********************/
 
 int minasAdyacentes(tablero& t, pos p) {
-    //Complejidad: O(1) constante
+    /*
+    Complejidad: O(1) constante
+    Es constante ya que la cantidad de operaciones elementales es siempre la misma y no depende del tamaño del tablero. Esto se ve en los bucles "for"
+    porque ambos van desde el -1 hasta el 2 (sin tener en cuenta el tamaño del tablero).
+ */
     int res = 0;
     for(int i = -1; i<2;i++){
         for(int j = -1;j<2;j++){
