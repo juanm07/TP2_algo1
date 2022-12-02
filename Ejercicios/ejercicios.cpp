@@ -74,7 +74,7 @@ bool gano(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
-    //Complejidad: O(n^2)
+    //Complejidad: O(|t|*(|b|+|j|)) (tomando la complejidad del caso recursivo en descubreAutomatico)
     if(casillaValida(p,t,b,j)&& minasAdyacentes(t, p)==0){
         j.push_back(jugada(p, minasAdyacentes(t, p)));
         descubreAutomatico(p,t,b,j);
