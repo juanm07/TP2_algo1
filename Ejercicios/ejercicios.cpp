@@ -85,7 +85,7 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
-   //Complejidad: O(n^2)
+   //Complejidad: O(|t|^2(|b|+|j|))
     for(int i = 0;i<t.size();i++){
         for(int k=0;k<t[i].size();k++){
             p = {i,k};
