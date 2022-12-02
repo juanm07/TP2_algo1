@@ -37,7 +37,7 @@ bool coordenadaValida(int c, int n){
 /******++++**************************** EJERCICIO plantarBanderita ***********+++***********************/
 
 bool perteneceABanderitas(pos p, banderitas& b){
-    //Complejidad O(n)
+    //Complejidad O(|b|)
     bool res = false;
     for(int i=0; i<b.size();i++){
         if(b[i]== p){
@@ -57,8 +57,8 @@ void intercambiarValoresVector(pos& x, pos& y){
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
 
 bool seJugoUnaMina(tablero& t, jugadas& j){
-    //Complejidad O(n)
-    //Si n es el tamaño del vector j, en el peor caso realizo n operaciones.
+    //Complejidad O(|j|)
+    //En el peor caso realizo |j| operaciones.
     for(int i = 0; i<j.size();i++){
         pos posicionJugada = j[i].first;
         if(t[posicionJugada.first][posicionJugada.second]){
@@ -197,7 +197,7 @@ bool casillaValida(pos p, tablero& t, banderitas& b, jugadas& j){
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 bool esAdyacente121(pos p, jugadas& j){
     /*
-    Complejidad: O(n)
+    Complejidad: O(|j|)
     Todas las auxiliares que evalua el if tienen complejidad lineal
     */
     if( es121Horizontal(pos(p.first - 1, p.second), j) || es121Horizontal(pos(p.first + 1, p.second), j) ||
@@ -208,7 +208,7 @@ bool esAdyacente121(pos p, jugadas& j){
 }
 
 bool es121Horizontal(pos p, jugadas& j){
-    //Complejidad: O(n)
+    //Complejidad: O(|j|)
     if(seJugo(jugada(pos(p.first, p.second -1 ), 1), j) &&
        seJugo(jugada(p, 2), j) &&
        seJugo(jugada(pos(p.first, p.second + 1 ), 1), j)){
@@ -218,7 +218,7 @@ bool es121Horizontal(pos p, jugadas& j){
 }
 
 bool es121Vertical(pos p, jugadas& j){
-    //Complejidad: O(n)
+    //Complejidad: O(|j|)
     if(seJugo(jugada(pos(p.first - 1, p.second), 1), j) &&
        seJugo(jugada(p, 2), j) &&
        seJugo(jugada(pos(p.first + 1, p.second), 1), j)){
@@ -228,7 +228,7 @@ bool es121Vertical(pos p, jugadas& j){
 }
 
 bool seJugo(jugada j0, jugadas& j){
-    //Complejidad: O(n)
+    //Complejidad: O(|j|)
     for(int i=0; i < j.size(); i++){
         if(j[i] == j0){
             return true;
