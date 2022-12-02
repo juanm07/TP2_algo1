@@ -113,9 +113,9 @@ void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j){
     //Complejidad de una sola ejecución: O(n^2) 
     // La cantidad de ejecuciones es equivalente a la cantidad de casilleros con minasAdyacentes=0. 
     // Caso base: Cuando no hay posiciones adyacentes con minasAdyacentes=0, es decir, cuando posAdy es un vector vacío.
-    vector <pos> posAdy = posicionesAdyacentesSinMinas(p, t, b, j); //O(n)
+    vector <pos> posAdy = posicionesAdyacentesSinMinas(p, t, b, j); //O(|b|+|j|)
     for(int i = 0; i < posAdy.size(); i++){
-        if(!perteneceAJugadas(posAdy[i], j)){ //perteneceAjugadas tiene complejidad O(n^2). Esto segun lo interpretamos. 
+        if(!perteneceAJugadas(posAdy[i], j)){ //perteneceAjugadas tiene complejidad O(|j|). Esto segun lo interpretamos. 
             j.push_back(jugada(posAdy[i], 0));
             finalDeCamino(t, b, posAdy[i] , j); /// Si la posición tiene una adyacente con minasAdyacentes>0, se la considera final de camino y se la añade a jugadas.
             descubreAutomatico(posAdy[i], t, b, j);
