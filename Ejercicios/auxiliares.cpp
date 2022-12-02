@@ -165,14 +165,23 @@ bool esUnaMina(pos p, tablero& t){
 }
 
 bool casillaValida(pos p, tablero& t, banderitas& b, jugadas& j){
-    //Complejidad: O(n^2)
+    /*
+    Complejidad: O(|b|+|j|)
+    perteneceAJugadas tiene complejidad de peor caso |j| (explicado en la funcion) y perteneceABanderitas complejidad |b|.
+    Entonces, en el peor caso, cada vez que se llama a esta funcion, se va a ejecutar perteneceAJugadas y perteneceABanderitas por lo que sus 
+    complejidades se van a sumar. Vale aclarar, que como las complejidades de esAdyacenteValida y esUnaMina son constantes, no van a afectar a 
+    la complejidad de peor caso (a nivel asintotico).
+    
+    */
     return (esAdyacenteValida(p, t) && !perteneceAJugadas(p, j) && !perteneceABanderitas(p, b) && !esUnaMina(p, t));
 }
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 bool esAdyacente121(pos p, jugadas& j){
-    //Complejidad: O(n)
-    //Todas las auxiliares que evalua el if tienen complejidad lineal
+    /*
+    Complejidad: O(n)
+    Todas las auxiliares que evalua el if tienen complejidad lineal
+    */
     if( es121Horizontal(pos(p.first - 1, p.second), j) || es121Horizontal(pos(p.first + 1, p.second), j) ||
         es121Vertical(pos(p.first, p.second - 1), j) || es121Vertical(pos(p.first, p.second + 1), j)){
         return true;
