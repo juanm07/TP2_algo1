@@ -57,8 +57,11 @@ void intercambiarValoresVector(pos& x, pos& y){
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
 
 bool seJugoUnaMina(tablero& t, jugadas& j){
-    //Complejidad O(|j|)
-    //En el peor caso realizo |j| operaciones.
+    /*
+    Complejidad O(|j|)
+    En el peor caso realizo |j| operaciones. Voy a hacer busqueda lineal sobre jugadas en busca de una mina. Por lo que el peor caso seria que no hubiera ninguna 
+    mina jugada. Entonces habria recorrido toda la estructura jugadas. De ahi que su complejidad sea O(|j|).
+    */
     for(int i = 0; i<j.size();i++){
         pos posicionJugada = j[i].first;
         if(t[posicionJugada.first][posicionJugada.second]){
