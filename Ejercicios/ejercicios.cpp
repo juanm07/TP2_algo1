@@ -38,7 +38,7 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
     /*
     Complejidad: O(|b|)
     En el peor caso realizo |b| operaciones. Porque mi programa va a hacer busqueda lineal (con el "for") sobre el vector
-    banderitas, en busca de la posicion p. Suponiendo que p no está en el vector, tendria que recorrerlo hasta el final (peor caso).
+    banderitas, en busca de la posicion p. Suponiendo que p no está en el vector, tendria que recorrerlo hasta el final (peor caso, |b|).
     Lo anterior es casi equivalente al caso donde p está en la ultima posicion del vector b.
     */
     int res = 0;
@@ -56,8 +56,11 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
 
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
 bool perdio(tablero& t, jugadas& j) {
-    //Complejidad: O(|j|)
-    //seJugoUnaMina en el peor caso tiene complejidad lineal
+    /*
+    Complejidad: O(|j|)
+    seJugoUnaMina en el peor caso tiene complejidad |j|. Esta es la unica funcion que llamo en perdio, por lo que su complejidad de peor caso
+    es la de seJugoUnaMina.
+    */
     if(seJugoUnaMina(t,j)){
         return true;
     }
@@ -68,7 +71,10 @@ bool perdio(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
 bool gano(tablero& t, jugadas& j) {
-    //Complejidad O(|j|^2 + |t|^2)
+    /*
+    Complejidad O(|j|^2 + |t|^2)
+    
+    */
     return juegoGanado(posicionesSinMinas(t), j);
 }
 
