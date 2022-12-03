@@ -80,7 +80,13 @@ bool gano(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
-    //Complejidad: O(|t|*(|b|+|j|)) (tomando la complejidad del caso recursivo en descubreAutomatico)
+    /*
+    Complejidad: O(|t|*(|b|+|j|)) (tomando la complejidad del caso recursivo en descubreAutomatico)
+    El peor caso seria que la guarda del if evalue como verdadera, con casillaValida siendo O(|j|+|b|). Entonces a esta comoplejidad
+    se le sumaría la de descubreAutomatico que es aproximadamente O(|t|*(|b|+|j|)). Pero como |t|*(|b|+|j|) >= |j|+|b| (por tablero valido)
+    la complejidad final se puede acotar por la de descubreAutomatico.
+    
+    */
     if(casillaValida(p,t,b,j)&& minasAdyacentes(t, p)==0){
         j.push_back(jugada(p, minasAdyacentes(t, p)));
         descubreAutomatico(p,t,b,j);
