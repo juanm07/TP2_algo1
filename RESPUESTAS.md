@@ -4,3 +4,4 @@ con acceder a la posicion en jugadas.
 Un ejemplo, seria la funcion perteneceAJugadas. En esta hago busqueda lineal hasta encontrar (o no) la posicion buscada, por lo que su complejidad es |j| como ya 
 explicamos. Sin embargo, con el cambio de estructura, para saber si una posicion p = (i,j) pertenece a jugadas, bastaria con preguntarse si j[i][j] = -1. 
 Y como el acceso a esa posicion tiene complejidad constante, toda la funcion tendria esa complejidad. 
+Ahora bien, en el caso de jugarPlus
