@@ -143,7 +143,7 @@ void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j){
     Caso base: Cuando no hay posiciones adyacentes con minasAdyacentes=0, es decir, cuando posAdy es un vector vacío.
     Como el tablero debe tener al maneos una mina, en el peor de los casos la cantidad de ejecuciones sería |t|-4
     (si consideramos que el tablero tiene una sola mina y está en una esquina), por lo que para el caso recursivo la complejidad sería: O(|t|*(|b|+|j|)).
-    Esto es teniendo en cuenta cuánto tardaria, en el peor caso, en llegar al caso base (donde acaba la recursion). Y nuestro caso base, es el explicado arriba.
+    Esto es teniendo en cuenta cuánto tardaria, en el peor caso, en llegar al caso base (donde acaba la recursion). Y nuestro caso base es el explicado arriba.
     */ 
     vector <pos> posAdy = posicionesAdyacentesSinMinas(p, t, b, j); //O(|b|+|j|)
     for(int i = 0; i < posAdy.size(); i++){
@@ -158,7 +158,7 @@ void descubreAutomatico(pos p, tablero& t, banderitas& b, jugadas& j){
 vector<pos> posicionesAdyacentesSinMinas(pos p,tablero& t,banderitas& b,jugadas& j){
     /*
     Complejidad: O(|b|+|j|)
-    Por casillaValida que tiene complejidad |b|+|j|, y la cantidad operaciones solo va a depender de |b| y |j| (los "for" se ejecutan una
+    Por casillaValida que tiene complejidad |b|+|j|,  la cantidad operaciones solo va a depender de |b| y |j| (los "for" se ejecutan una
     cantidad determinada de veces). minasAdyacentes tiene complejidad constante, asi que no afecta a la complejidad total (asintoticamente).
     */
     vector <pos> res;
@@ -224,7 +224,8 @@ bool casillaValida(pos p, tablero& t, banderitas& b, jugadas& j){
 bool esAdyacente121(pos p, jugadas& j){
     /*
     Complejidad: O(|j|)
-    Todas las auxiliares que evalua el if tienen complejidad lineal
+    Todas las auxiliares que evalua el if tienen complejidad O(|j|). Por lo tanto, en el peor caso, voy a tener una complejidad
+    igual a O(4|j|). Equivalente a una complejidad de O(|j|), ignorando las constantes.
     */
     if( es121Horizontal(pos(p.first - 1, p.second), j) || es121Horizontal(pos(p.first + 1, p.second), j) ||
         es121Vertical(pos(p.first, p.second - 1), j) || es121Vertical(pos(p.first, p.second + 1), j)){
@@ -234,7 +235,10 @@ bool esAdyacente121(pos p, jugadas& j){
 }
 
 bool es121Horizontal(pos p, jugadas& j){
-    //Complejidad: O(|j|)
+    /*
+    Complejidad: O(|j|)
+    Justificacion igual a la de la funcion es121Vertical.
+    */
     if(seJugo(jugada(pos(p.first, p.second -1 ), 1), j) &&
        seJugo(jugada(p, 2), j) &&
        seJugo(jugada(pos(p.first, p.second + 1 ), 1), j)){
@@ -244,7 +248,12 @@ bool es121Horizontal(pos p, jugadas& j){
 }
 
 bool es121Vertical(pos p, jugadas& j){
-    //Complejidad: O(|j|)
+    /*
+    Complejidad: O(|j|)
+    Cuando se evaluan las condiciones del if, en el peor caso voy a llegar hasta la ultima condicion (siendo las anteriores verdaderas). 
+    Esto hace que llame 3 veces a la funcion seJugo, que tiene complejidad O(|j|), por lo que la complejidad total quedaria de O(|j|+|j|+|j|).
+    Equivalente a decir que es O(|j|) 
+    */
     if(seJugo(jugada(pos(p.first - 1, p.second), 1), j) &&
        seJugo(jugada(p, 2), j) &&
        seJugo(jugada(pos(p.first + 1, p.second), 1), j)){
@@ -254,7 +263,10 @@ bool es121Vertical(pos p, jugadas& j){
 }
 
 bool seJugo(jugada j0, jugadas& j){
-    //Complejidad: O(|j|)
+    /*
+    Complejidad: O(|j|)
+    Realizo una busqueda lineal en jugadas, por lo que, en el peor caso, j0 no está en j y por lo tanto, el "for" va a iterar |j| veces.
+    */
     for(int i=0; i < j.size(); i++){
         if(j[i] == j0){
             return true;
