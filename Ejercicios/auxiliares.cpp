@@ -16,7 +16,7 @@ bool esAdyacenteValida(pos p, tablero& t){
     /*
     Complejidad O(1)
     La cantidad de operaciones elementales no depende del tamaño de t, ni de la posicion que ingrese, por lo que dicha cantidad siempre sera la misma
-    y por lo tanto, tendrá una complejidad de peor caso, lineal.
+    y por lo tanto, tendrá una complejidad de peor caso, constante.
     */
     int largo_tablero = t.size();
     bool res = false;
