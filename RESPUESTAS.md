@@ -1,7 +1,6 @@
-Si fuera una matriz (y no un vector, como es originalmente) cada vez que quisiera acceder a determinada posicion deberia recorrer a la matriz. Recorrer a la matriz es mas costoso, en el peor caso, que recorrer a la estructura original de jugadas. Por ejemplo podria hacerlo con dos "for", uno para las columnas y el otro para las filas. 
-Asi, auxiliares como perteneceAJugadas tendrian un mayor costo que el que tenian originalmente. 
-
-Un punto a favor podria ser que esta estructura de jugadas nos da una idea mas concreta del tablero, ya que la propia matriz representa al tablero (y sus posiciones descubiertas).
-
-Entonces, segun como planteamos nosotros los ultimos dos ejercicios, este cambio de estructura haria que estos tuvieran una mayor complejidad temporal del que ya tienen. Aunque tambien afectaria a otros ejercicios donde se usen funciones que requieran recorrer a jugadas. 
- 
+Lo que pasaria si la estructura jugadas fuera una matriz como la propuesta, seria principalmente que las funciones que requieran recorrer "jugadas" van a cambiar.
+Van a cambiar porque, por ejemplo, si quiero verificar si una posicion esta en jugadas ya no voy a tener que hacer busqueda lineal sobre la estructura, sino que me basta 
+con acceder a la posicion en jugadas.
+Un ejemplo, seria la funcion perteneceAJugadas. En esta hago busqueda lineal hasta encontrar (o no) la posicion buscada, por lo que su complejidad es |j| como ya 
+explicamos. Sin embargo, con el cambio de estructura, para saber si una posicion p = (i,j) pertenece a jugadas, bastaria con preguntarse si j[i][j] = -1. 
+Y como el acceso a esa posicion tiene complejidad constante, toda la funcion tendria esa complejidad. 
