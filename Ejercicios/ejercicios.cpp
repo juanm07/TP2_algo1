@@ -73,7 +73,10 @@ bool perdio(tablero& t, jugadas& j) {
 bool gano(tablero& t, jugadas& j) {
     /*
     Complejidad O(|j|^2 + |t|^2)
-    
+    La complejidad total resulta de sumar la complejidad de juegoGanado, que es O(|j|^2), mas la de posicionesSinMinas (que es O(|t|^2)).
+    Quizas podria argumentarse que |j|^2 + |t|^2 puede acotarse, en terminos de complejidad, como simplemente |t|^2, ya que en el peor caso la longitud de jugadas
+    seria casi igual al tamaño del tablero (pues estaria ante un caso, donde por ejemplo, hay una sola mina y el resto son jugadas). No obstante, a fines 
+    practicos, consideramos que era mejor dejarla asi.
     */
     return juegoGanado(posicionesSinMinas(t), j);
 }
