@@ -38,7 +38,7 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
     /*
     Complejidad: O(|b|)
     En el peor caso realizo |b| operaciones. Porque mi programa va a hacer busqueda lineal (con el "for") sobre el vector
-    banderitas, en busca de la posicion p. Suponiendo que p no está en el vector, tendria que recorrerlo hasta el final (peor caso).
+    banderitas, en busca de la posicion p. Suponiendo que p no está en el vector, tendria que recorrerlo hasta el final (peor caso, |b|).
     Lo anterior es casi equivalente al caso donde p está en la ultima posicion del vector b.
     */
     int res = 0;
@@ -56,8 +56,11 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
 
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
 bool perdio(tablero& t, jugadas& j) {
-    //Complejidad: O(|j|)
-    //seJugoUnaMina en el peor caso tiene complejidad lineal
+    /*
+    Complejidad: O(|j|)
+    seJugoUnaMina en el peor caso tiene complejidad |j|. Esta es la unica funcion que llamo en perdio, por lo que su complejidad de peor caso
+    es la de seJugoUnaMina.
+    */
     if(seJugoUnaMina(t,j)){
         return true;
     }
@@ -68,13 +71,22 @@ bool perdio(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
 bool gano(tablero& t, jugadas& j) {
-    //Complejidad O(|j|^2 + |t|^2)
+    /*
+    Complejidad O(|j|^2 + |t|^2)
+    
+    */
     return juegoGanado(posicionesSinMinas(t), j);
 }
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
-    //Complejidad: O(|t|*(|b|+|j|)) (tomando la complejidad del caso recursivo en descubreAutomatico)
+    /*
+    Complejidad: O(|t|*(|b|+|j|)) (tomando la complejidad del caso recursivo en descubreAutomatico)
+    El peor caso seria que la guarda del if evalue como verdadera, con casillaValida siendo O(|j|+|b|). Entonces a esta comoplejidad
+    se le sumaría la de descubreAutomatico que es aproximadamente O(|t|*(|b|+|j|)). Pero como |t|*(|b|+|j|) >= |j|+|b| (por tablero valido)
+    la complejidad final se puede acotar por la de descubreAutomatico.
+    
+    */
     if(casillaValida(p,t,b,j)&& minasAdyacentes(t, p)==0){
         j.push_back(jugada(p, minasAdyacentes(t, p)));
         descubreAutomatico(p,t,b,j);
@@ -90,7 +102,7 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
    Aclaracion, el tablero es cuadrado entonces |t|=|t[i]| para todo i valido. 
    La cantidad de iteraciones del primer "for" depende de |t|, a su vez el segundo "for" se va a ejecutar, en el peor caso, |t|*|t| veces 
    (ya que esta anidado en el primer "for"). Viendo la complejidad del segundo "for", las funciones perteneceAJugadas, esAdyacente121
-   y perteneceABanderitas tienen complejidad de peor caso |j|, |j| y |b| respectivamente. Entonces, la complejidad de peor caso va a ser 
+   y perteneceABanderitas tienen complejidad de peor caso O(|j|), O(|j|) y O(|b|) respectivamente. Entonces, la complejidad de peor caso va a ser 
    (2|j|+|b|) * |t|, que seria equivalente (aproximadamente) a (|j|+|b|) * |t|.
    De ahi que la complejidad final sea de |t|^2(|b|+|j|)
    */
