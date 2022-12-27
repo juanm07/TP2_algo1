@@ -1,7 +1,7 @@
 ﻿# Tests
 
 Para correr los tests vamos a usar el framework Google Test.
-
+Descargar de: https://github.com/google/googletest
 Cada test tiene que ir en una función separada, y las funciones tienen que
 definirse de la siguiente manera:
 
