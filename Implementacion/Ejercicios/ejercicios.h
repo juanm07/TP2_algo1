@@ -1,7 +1,4 @@
-//
 // Este archivo contiene las declaraciones de las funciones (no el código).
-// Tienen que coincidir exactamente con el código que se encuentra en ejercicios.cpp
-//
 
 #pragma once   // esta línea es para que el archivo se incluya una sola vez
 
