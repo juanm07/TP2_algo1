@@ -1,8 +1,5 @@
-//
+
 // Este archivo contiene las definiciones de las funciones auxiliares
-// que ustedes necesiten implementar. Tienen que coincidir con las 
-// declaraciones de auxiliares.h
-//
 
 #include <iostream>
 
